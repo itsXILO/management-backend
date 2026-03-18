@@ -1,6 +1,29 @@
-import { pgTable, serial, text } from 'drizzle-orm/pg-core';
-export const demoUsers = pgTable('demo_users', {
-    id: serial('id').primaryKey(),
-    name: text('name'),
+import { timestamp, integer, pgTable, varchar } from 'drizzle-orm/pg-core';
+import { relations } from 'drizzle-orm';
+const timesstamp = {
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').defaultNow().$onUpdate(() => new Date()).notNull()
+};
+export const departments = pgTable('departments', {
+    id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+    code: varchar('code', { length: 10 }).notNull().unique(),
+    name: varchar('name', { length: 255 }).notNull(),
+    description: varchar('description', { length: 255 }),
+    ...timesstamp
 });
+export const subjects = pgTable('subjects', {
+    id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+    departmentId: integer('department_id').notNull().references(() => departments.id, { onDelete: 'restrict' }),
+    code: varchar('code', { length: 10 }).notNull().unique(),
+    name: varchar('name', { length: 255 }).notNull(),
+    description: varchar('description', { length: 255 }),
+    ...timesstamp
+});
+export const departmentRelations = relations(departments, ({ many }) => ({ subjects: many(subjects) }));
+export const subjectRelations = relations(subjects, ({ one, many }) => ({
+    department: one(departments, {
+        fields: [subjects.departmentId],
+        references: [departments.id]
+    })
+}));
 //# sourceMappingURL=app.js.map
