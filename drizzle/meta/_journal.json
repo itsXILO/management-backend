@@ -22,6 +22,20 @@
       "when": 1773502654209,
       "tag": "0002_left_warlock",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1773860097248,
+      "tag": "0003_supreme_crystal",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1773860307831,
+      "tag": "0004_married_elektra",
+      "breakpoints": true
     }
   ]
 }
