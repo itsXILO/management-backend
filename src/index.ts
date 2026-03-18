@@ -1,7 +1,20 @@
-import "dotenv/config";
+import { config, parse } from "dotenv";
 import express from "express";
 import cors from "cors";
 import subjectRouter from "./routes/subject";
+import { fileURLToPath } from "node:url";
+import { existsSync, readFileSync } from "node:fs";
+
+const envPath = fileURLToPath(new URL("../.env", import.meta.url));
+
+if (existsSync(envPath)) {
+	const parsed = parse(readFileSync(envPath));
+	if (parsed.FRONTEND_URL) {
+		process.env.FRONTEND_URL = parsed.FRONTEND_URL;
+	}
+}
+
+config({ path: envPath, override: true });
 
 const app = express();
 const PORT = 4000;
