@@ -1,6 +1,9 @@
+import AgentAPI from "apminsight";
+AgentAPI.config()
 import { config, parse } from "dotenv";
 import express from "express";
 import cors from "cors";
+
 import subjectRouter from "./routes/subject";
 import { fileURLToPath } from "node:url";
 import { existsSync, readFileSync } from "node:fs";
