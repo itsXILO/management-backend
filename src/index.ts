@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 
 import subjectRouter from "./routes/subject.js";
+import userRouter from "./routes/users.js";
 import { fileURLToPath } from "node:url";
 import { existsSync, readFileSync } from "node:fs";
 import securityMiddleware from "./middleware/security.js";
@@ -38,6 +39,7 @@ app.use('/api/auth', authHandler);
 app.use(express.json());
 app.use(securityMiddleware);
 app.use("/api/subjects", subjectRouter);
+app.use("/api/users", userRouter);
 
 app.get("/", (_req, res) => {
 	res.json({ message: "Server is running" });
