@@ -4,11 +4,11 @@ import { config, parse } from "dotenv";
 import express from "express";
 import cors from "cors";
 
-import subjectRouter from "./routes/subject";
+import subjectRouter from "./routes/subject.js";
 import { fileURLToPath } from "node:url";
 import { existsSync, readFileSync } from "node:fs";
-import securityMiddleware from "./middleware/security";
-import { auth } from "./lib/auth";
+import securityMiddleware from "./middleware/security.js";
+import { auth } from "./lib/auth.js";
 import { toNodeHandler } from "better-auth/node";
 
 const envPath = fileURLToPath(new URL("../.env", import.meta.url));

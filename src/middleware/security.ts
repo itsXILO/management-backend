@@ -1,5 +1,5 @@
 import type { NextFunction, Response, Request } from "express";
-import aj from "../config/arcjet";
+import aj from "../config/arcjet.js";
 import { ArcjetNodeRequest, slidingWindow } from "@arcjet/node";
 
 type RateLimitRole = "admin" | "teacher" | "student" | "guest";

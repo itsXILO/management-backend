@@ -1,7 +1,7 @@
 import { and, eq, getTableColumns, ilike, or, sql } from 'drizzle-orm';
-import { departments, subjects } from '../db/schema/index.ts';
+import { departments, subjects } from '../db/schema/index.js';
 import express from 'express';
-import db from '../db/index.ts';
+import db from '../db/index.js';
 
 const router = express.Router();
 
